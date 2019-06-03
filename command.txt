@@ -1,0 +1,21 @@
+purchaser = web3.eth.accounts[2]
+OZCrowdsale.deployed().then(inst => { crowdsale = inst })
+crowdsale.token().then(addr => { tokenAddress = addr } )
+tokenAddress
+tokenInstance = OZToken.at(tokenAddress)
+tokenInstance.transfer(crowdsale.address, web3.toWei(10000,"ether"))
+tokenInstance.approve(crowdsale.address, web3.toWei(10000,"ether"))
+tokenInstance.allowance(web3.eth.accounts[0], crowdsale.address).then(allowance => allowance.toString(10))
+tokenInstance.balanceOf(purchaser).then(balance => balance.toString(10))
+OZCrowdsale.deployed().then(inst => inst.sendTransaction({from:purchaser, to:crowdsale.address, value:web3.toWei(5,"ether")}))
+web3.eth.sendTransaction({from:purchaser, to:crowdsale.address, value:web3.toWei(5,"ether")
+web3.personal.unlockAccount(purchaser, "556bcd9b1b74d6e6a849f5aef6064f92c62be0e6c05ec33d352c8cd41eed868f", 2000)
+
+
+
+
+
+
+
+
+
